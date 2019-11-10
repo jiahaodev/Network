@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/02-Async/Async.unity
     guid: 485c5ce7a49d5b1468dce21dff007503
+  - enabled: 1
+    path: Assets/Scenes/03-MoveGame/MoveGame.unity
+    guid: c95c3a549660cb54b84da2c0d8dda532
   m_configObjects: {}
