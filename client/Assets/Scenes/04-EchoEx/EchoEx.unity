@@ -555,7 +555,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 884839119}
+  - component: {fileID: 884839121}
   - component: {fileID: 884839120}
+  - component: {fileID: 884839122}
+  - component: {fileID: 884839123}
+  - component: {fileID: 884839124}
   m_Layer: 5
   m_Name: EchoUI
   m_TagString: Untagged
@@ -593,9 +597,63 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884839118}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7ae0ff5d3c1d9478f836b1e2f2b9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InputField: {fileID: 643264671}
+  text: {fileID: 1585584566}
+--- !u!114 &884839121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884839118}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9ec3d57d021f94bbd9546c854314bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &884839122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884839118}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 631d05fbf694b57438a5284a9391cb1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InputField: {fileID: 643264671}
+  text: {fileID: 1585584566}
+--- !u!114 &884839123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884839118}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65273f25a36f5fa47be7a54be7b26a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InputField: {fileID: 643264671}
+  text: {fileID: 1585584566}
+--- !u!114 &884839124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884839118}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6950444d2e138834dbf37e1c2f25fc30, type: 3}
+  m_Script: {fileID: 11500000, guid: 1515431fd64ceab41b3320f6fa01f3b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   InputField: {fileID: 643264671}
@@ -679,7 +737,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 884839120}
+      - m_Target: {fileID: 884839124}
         m_MethodName: Send
         m_Mode: 1
         m_Arguments:
@@ -1226,7 +1284,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 884839120}
+      - m_Target: {fileID: 884839124}
         m_MethodName: Connection
         m_Mode: 1
         m_Arguments:
