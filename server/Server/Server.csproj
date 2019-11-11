@@ -43,15 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1_Echo\Echo.cs" />
-    <Compile Include="2_Async\AsyncEcho.cs" />
-    <Compile Include="2_Async\ChatRoom.cs" />
-    <Compile Include="2_Async\ClientState.cs" />
-    <Compile Include="2_Async\PollEcho.cs" />
-    <Compile Include="2_Async\SelectEcho.cs" />
-    <Compile Include="3_MoveGame\MoveGame.cs" />
-    <Compile Include="3_MoveGame\EventHandler.cs" />
-    <Compile Include="3_MoveGame\MsgHandler.cs" />
+    <Compile Include="01-Echo\Echo.cs" />
+    <Compile Include="02-Async\AsyncEcho.cs" />
+    <Compile Include="02-Async\ChatRoom.cs" />
+    <Compile Include="02-Async\ClientState.cs" />
+    <Compile Include="02-Async\PollEcho.cs" />
+    <Compile Include="02-Async\SelectEcho.cs" />
+    <Compile Include="03-MoveGame\MoveGame.cs" />
+    <Compile Include="03-MoveGame\EventHandler.cs" />
+    <Compile Include="03-MoveGame\MsgHandler.cs" />
+    <Compile Include="04-EchoEx\EchoEx.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

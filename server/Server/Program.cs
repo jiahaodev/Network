@@ -12,7 +12,7 @@ namespace Server
         {
             Console.WriteLine("Hello Server");
             Console.WriteLine("[服务器]启动完成");
-            new MoveGame().Execute();
+            new EchoEx().Execute();
         }
     }
 }
