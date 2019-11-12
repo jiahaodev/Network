@@ -32,11 +32,11 @@ public class CtrlHuman : BaseHuman
                 MoveTo(hit.point);
                 //发送协议
                 string sendStr = "Move|";
-                sendStr += NetManager.GetDesc() + ",";
+                sendStr += SimpleNetManager.GetDesc() + ",";
                 sendStr += hit.point.x + ",";
                 sendStr += hit.point.y + ",";
                 sendStr += hit.point.z + ",";
-                NetManager.Send(sendStr);
+                SimpleNetManager.Send(sendStr);
             }
         }
         //攻击
@@ -54,9 +54,9 @@ public class CtrlHuman : BaseHuman
 
             //发送协议(攻击)
             string sendStr = "Attack|";
-            sendStr += NetManager.GetDesc() + ",";
+            sendStr += SimpleNetManager.GetDesc() + ",";
             sendStr += transform.eulerAngles.y + ",";
-            NetManager.Send(sendStr);
+            SimpleNetManager.Send(sendStr);
 
             //攻击判定
             Vector3 lineEnd = transform.position + 0.5f * Vector3.up;
@@ -70,9 +70,9 @@ public class CtrlHuman : BaseHuman
                 if (h == null)
                     return;
                 sendStr = "Hit|";
-                sendStr += NetManager.GetDesc() + ",";
+                sendStr += SimpleNetManager.GetDesc() + ",";
                 sendStr += h.desc + ",";
-                NetManager.Send(sendStr);
+                SimpleNetManager.Send(sendStr);
             }
         }
     }

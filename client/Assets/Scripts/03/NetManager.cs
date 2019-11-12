@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using UnityEngine;
 
-public  class NetManager
+public  class SimpleNetManager
 {
     //定义套接字
     static Socket socket;

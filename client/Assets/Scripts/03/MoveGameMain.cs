@@ -21,18 +21,18 @@ public class MoveGameMain : MonoBehaviour
     private void Start()
     {
         //网络模块
-        NetManager.AddListener("Enter", OnEnter);
-        NetManager.AddListener("List", OnList);
-        NetManager.AddListener("Move", OnMove);
-        NetManager.AddListener("Attack", OnAttack);
-        NetManager.AddListener("Die", OnDie);
-        NetManager.AddListener("Leave", OnLeave);
-        NetManager.Connect("127.0.0.1", 8888);
+        SimpleNetManager.AddListener("Enter", OnEnter);
+        SimpleNetManager.AddListener("List", OnList);
+        SimpleNetManager.AddListener("Move", OnMove);
+        SimpleNetManager.AddListener("Attack", OnAttack);
+        SimpleNetManager.AddListener("Die", OnDie);
+        SimpleNetManager.AddListener("Leave", OnLeave);
+        SimpleNetManager.Connect("127.0.0.1", 8888);
         //添加玩家自身
         InitHumanSelf();
         Thread.Sleep(500);
         //请求玩家列表
-        NetManager.Send("List|");
+        SimpleNetManager.Send("List|");
     }
 
     private void InitHumanSelf() {
@@ -42,18 +42,18 @@ public class MoveGameMain : MonoBehaviour
         float z = Random.Range(-5, 5);
         obj.transform.position = new Vector3(x, 0, z);
         myHuman = obj.AddComponent<CtrlHuman>();
-        myHuman.desc = NetManager.GetDesc();
+        myHuman.desc = SimpleNetManager.GetDesc();
 
         //发送协议
         Vector3 pos = myHuman.transform.position;
         Vector3 eul = myHuman.transform.eulerAngles;
         string sendStr = "Enter|";
-        sendStr += NetManager.GetDesc() + ",";
+        sendStr += SimpleNetManager.GetDesc() + ",";
         sendStr += pos.x + ",";
         sendStr += pos.y + ",";
         sendStr += pos.z + ",";
         sendStr += eul.y;
-        NetManager.Send(sendStr);
+        SimpleNetManager.Send(sendStr);
 
     }
 
@@ -69,7 +69,7 @@ public class MoveGameMain : MonoBehaviour
         float z = float.Parse(split[3]);
         float eulY = float.Parse(split[4]);
         //是自己
-        if (desc == NetManager.GetDesc())
+        if (desc == SimpleNetManager.GetDesc())
         {
             return;
         }
@@ -96,7 +96,7 @@ public class MoveGameMain : MonoBehaviour
             float eulY = float.Parse(split[i * 6 + 4]);
             int hp = int.Parse(split[i * 6 + 5]);
             //是自己
-            if (desc == NetManager.GetDesc())
+            if (desc == SimpleNetManager.GetDesc())
                 continue;
             //添加一个角色
             GameObject obj = (GameObject)Instantiate(humanPrefab);
@@ -187,6 +187,6 @@ public class MoveGameMain : MonoBehaviour
     //驱动网络模块分发消息
     private void Update()
     {
-        NetManager.Update();
+        SimpleNetManager.Update();
     }
 }
