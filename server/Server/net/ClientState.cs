@@ -12,15 +12,13 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server
+public class ClientState
 {
-    class ClientState
-    {
-        public Socket socket;
-        public ByteArray readBuff = new ByteArray();
-        //Ping
-        public long lastPingTime = 0;
-        //玩家
-        public Player player;
-    }
+    public Socket socket;
+    public ByteArray readBuff = new ByteArray();
+    //Ping
+    public long lastPingTime = 0;
+    //玩家
+    public Player player;
 }
+

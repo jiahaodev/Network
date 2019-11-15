@@ -5,23 +5,20 @@
 	日期：2019/11/15 23:36   	
 	功能：心跳机制消息
 *****************************************************/
-namespace Server
+public class MsgPing : MsgBase
 {
-    class MsgPing : MsgBase
+    public MsgPing()
     {
-        public MsgPing()
-        {
-            protoName = "MsgPing";
-        }
+        protoName = "MsgPing";
     }
-
-
-    class MsgPong : MsgBase
-    {
-        public MsgPong()
-        {
-            protoName = "MsgPong";
-        }
-    }
-
 }
+
+
+public class MsgPong : MsgBase
+{
+    public MsgPong()
+    {
+        protoName = "MsgPong";
+    }
+}
+

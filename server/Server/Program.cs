@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server
+public class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello Server");
-            Console.WriteLine("[服务器]启动完成");
-            new Final().Execute();  //最终版本
-        }
+        Console.WriteLine("Hello Server");
+        Console.WriteLine("[服务器]启动完成");
+        new Final().Execute();  //最终版本
     }
 }
+
