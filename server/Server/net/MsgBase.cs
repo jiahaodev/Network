@@ -1,4 +1,11 @@
-﻿using System;
+﻿/****************************************************
+	文件：MsgBase.cs
+	作者：JiahaoWu
+	邮箱: jiahaodev@163.ccom
+	日期：2019/11/15 23:04   	
+	功能：通信消息的基类
+*****************************************************/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

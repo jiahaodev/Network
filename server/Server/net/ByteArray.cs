@@ -1,4 +1,11 @@
-﻿using System;
+﻿/****************************************************
+	文件：ByteArray.cs
+	作者：JiahaoWu
+	邮箱: jiahaodev@163.ccom
+	日期：2019/11/15 23:03   	
+	功能：读写缓冲区封装类
+*****************************************************/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

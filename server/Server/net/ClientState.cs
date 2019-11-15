@@ -1,4 +1,11 @@
-﻿using System;
+﻿/****************************************************
+	文件：ClientState.cs
+	作者：JiahaoWu
+	邮箱: jiahaodev@163.ccom
+	日期：2019/11/15 23:04   	
+	功能：客户端连接状态
+*****************************************************/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
