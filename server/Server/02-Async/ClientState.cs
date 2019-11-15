@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    class ClientState
+    class SimpleClientState
     {
         public Socket socket;
         public byte[] readBuff = new byte[1024];
@@ -17,8 +17,8 @@ namespace Server
         public float z = 0;
         public float eulY = 0;
 
-        public ClientState() { }
-        public ClientState(Socket socket)
+        public SimpleClientState() { }
+        public SimpleClientState(Socket socket)
         {
             this.socket = socket;
         }
