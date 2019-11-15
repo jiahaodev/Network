@@ -1,4 +1,11 @@
-﻿using MySql.Data.MySqlClient;
+﻿/****************************************************
+	文件：DbManager.cs
+	作者：JiahaoWu
+	邮箱: jiahaodev@163.ccom
+	日期：2019/11/15 23:02   	
+	功能：数据库管理者
+*****************************************************/
+using MySql.Data.MySqlClient;
 using System.Web.Script.Serialization;
 using System;
 using System.Collections.Generic;
