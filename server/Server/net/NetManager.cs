@@ -1,8 +1,16 @@
-﻿using System;
+﻿/****************************************************
+	文件：NetManager.cs
+	作者：JiahaoWu
+	邮箱: jiahaodev@163.ccom
+	日期：2019/11/15 23:05   	
+	功能：网络通信核心管理者
+*****************************************************/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -62,7 +70,7 @@ namespace Server
             }
         }
 
-        //读取Listenfd
+        //读取Listenfd（接收连接请求）
         private static void ReadListenfd(Socket listenfd)
         {
             try
@@ -106,7 +114,7 @@ namespace Server
             }
             catch (SocketException e)
             {
-                Console.WriteLine("Receive SocketException " + ex.ToString());
+                Console.WriteLine("Receive SocketException " + e.ToString());
                 Close(state);
                 return;
             }
@@ -139,45 +147,113 @@ namespace Server
             //消息体长度
             int readIdx = readBuff.readIdx;
             byte[] bytes = readBuff.bytes;
-
+            Int16 bodyLength = (Int16)(bytes[readIdx+1]<<8|bytes[readIdx]);
+            if (readBuff.length < bodyLength)
+            {
+                return;
+            }
+            readBuff.readIdx += 2;
             //解析协议名
-
+            int nameCount = 0;
+            string protoName = MsgBase.DecodeName(readBuff.bytes, readBuff.readIdx, out nameCount);
+            if (protoName == "")
+            {
+                Console.WriteLine("OnReceiveData MsgBase.DecodeName fail");
+                Close(state);
+                return;
+            }
+            readBuff.readIdx += nameCount;
             //解析协议体
+            int bodyCount = bodyLength - nameCount;
+            if (bodyCount <= 0)
+            {
+                Console.WriteLine("OnReceiveDate fail,bodyCount <= 0");
+                Close(state);
+                return;
+            }
 
+            MsgBase msgBase = MsgBase.Decode(protoName, readBuff.bytes, readBuff.readIdx, bodyCount);
+            readBuff.readIdx += bodyCount;
+            readBuff.CheckAnMoveBytes();
             //分发消息【对应监听模块进行对应的处理】
-
+            MethodInfo mi = typeof(MsgHandler).GetMethod(protoName);
+            object[] o = { state, msgBase };
+            Console.WriteLine("Receive " + protoName);
+            if (mi != null)
+            {
+                mi.Invoke(null, o);
+            }
+            else {
+                Console.WriteLine("OnReceiveData Invoke fail " + protoName);
+            }
             //继续读取消息
-
+            if (readBuff.length > 2)
+            {
+                OnReceiveData(state);
+            }
 
         }
 
-        private static void Close(ClientState state)
-        {
-            throw new NotImplementedException();
+        //发送
+        public static void Send(ClientState cs,MsgBase msg) {
+            //状态判断
+            if (cs == null )
+            {
+                return;
+            }
+            if (!cs.socket.Connected)
+            {
+                return;
+            }
+            //数据编码
+            byte[] nameBytes = MsgBase.EncodeName(msg);
+            byte[] bodyBytes = MsgBase.Encode(msg);
+            int len = nameBytes.Length + bodyBytes.Length;
+            byte[] sendBytes = new byte[2 + len];
+            //组装长度
+            sendBytes[0] = (byte)(len % 256);
+            sendBytes[1] = (byte)(len / 256);
+            //组装名字
+            Array.Copy(nameBytes,0,sendBytes,2,nameBytes.Length);
+            //组装消息体
+            Array.Copy(bodyBytes, 0, sendBytes, 2 + nameBytes.Length, bodyBytes.Length);
+
+            //为了简化代码，不设置回调
+            try
+            {
+                cs.socket.BeginSend(sendBytes,0,sendBytes.Length,0,null,null);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Socket Close on BeginSend" + e.ToString());
+            }
         }
-
-
 
 
         //关闭连接
-
-
-
-        //接收（数据处理）
-
-        //发送
-
+        public static void Close(ClientState state)
+        {
+            //消息分发
+            MethodInfo mei = typeof(EventHandler).GetMethod("OnDisconnect");
+            object[] ob = { state };
+            mei.Invoke(null,ob);
+            //关闭
+            state.socket.Close();
+            clients.Remove(state.socket);
+        }
 
         //定时器（启动定时任务）
+        static void Timer() {
+            MethodInfo mei = typeof(EventHandler).GetMethod("OnTimer");
+            object[] ob = { };
+            mei.Invoke(null,ob);
+        }
 
 
         //获取时间戳
         public static long GetTimeStamp() {
-
-            return null;
+            TimeSpan ts = DateTime.UtcNow - new DateTime(1970,1,1,0,0,0,0);
+            return Convert.ToInt64(ts.TotalSeconds);
         }
-
-
-
     }
 }
