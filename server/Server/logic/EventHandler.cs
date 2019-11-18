@@ -18,7 +18,7 @@ public partial class EventHandler
             //保存数据
             DbManager.UpdatePlayerData(c.player.id,c.player.data);
             //移除
-            PlayerManager.RomovePlayer(c.player.id);
+            PlayerManager.RemovePlayer(c.player.id);
         }
     }
 
