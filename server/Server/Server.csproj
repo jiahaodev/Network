@@ -48,18 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="db\DbManager.cs" />
-    <Compile Include="demo\01-Echo\Echo.cs" />
-    <Compile Include="demo\02-Async\AsyncEcho.cs" />
-    <Compile Include="demo\02-Async\ChatRoom.cs" />
-    <Compile Include="demo\02-Async\ClientState.cs" />
-    <Compile Include="demo\02-Async\PollEcho.cs" />
-    <Compile Include="demo\02-Async\SelectEcho.cs" />
-    <Compile Include="demo\03-MoveGame\EventHandler.cs" />
-    <Compile Include="demo\03-MoveGame\MoveGame.cs" />
-    <Compile Include="demo\03-MoveGame\MsgHandler.cs" />
-    <Compile Include="demo\04-EchoEx\EchoEx.cs" />
-    <Compile Include="demo\07-NetManager\NetManagerEx.cs" />
-    <Compile Include="demo\12-Final\Final.cs" />
     <Compile Include="logic\BattleMsgHandler.cs" />
     <Compile Include="logic\EventHandler.cs" />
     <Compile Include="logic\LoginMsgHandler.cs" />
