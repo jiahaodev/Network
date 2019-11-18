@@ -41,7 +41,7 @@ public class GameMain : MonoBehaviour{
 	}
 
 	void Update(){
-		NetManager.Updte();
+		NetManager.Update();
 	}
 
 	//关闭连接

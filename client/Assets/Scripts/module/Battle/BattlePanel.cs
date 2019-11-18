@@ -42,7 +42,7 @@ public class BattlePanel : BasePanel {
 	}
 
 	//更新信息(阵营信息)
-	private void ReflashCamoInfo(){
+	private void ReflashCampInfo(){
 		int count1 = 0;
 		int count2 = 0;
 		foreach(BaseTank tank in BattleManager.tanks.Values){
@@ -65,7 +65,7 @@ public class BattlePanel : BasePanel {
 	}
 
 	//收到击中协议
-	public void OnMsgLeaveBattle(MsgBase msgBase){
+	public void OnMsgHit(MsgBase msgBase){
 		MsgHit msg = (MsgHit)msgBase;
 		//如果是自身被击中
 		if(msg.targetId == GameMain.id){

@@ -22,7 +22,7 @@ public class BasePanel : MonoBehaviour{
 	
 
 	//初始化时
-	public virtual void OnInt(){
+	public virtual void OnInit(){
 
 	}
 

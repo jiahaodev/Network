@@ -60,7 +60,7 @@ public static class PanelManager{
 		//OnClose
 		panel.OnClose();
 		//列表
-		panel.Remove(name);
+		panels.Remove(name);
 		//销毁
 		GameObject.Destroy(panel.skin);
 		Component.Destroy(panel);

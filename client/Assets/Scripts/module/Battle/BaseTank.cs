@@ -6,7 +6,7 @@ public class BaseTank : MonoBehaviour{
 	//坦克模型
 	private GameObject skin;
 	//转向速度
-	public flaot steer = 30;
+	public float steer = 30;
 	//移动速度
 	public float speed = 6f;
 	//炮塔旋转速度
@@ -31,7 +31,7 @@ public class BaseTank : MonoBehaviour{
 
 
 	//物理
-	protected Rigidbody rigidbody;
+	protected Rigidbody rigidBody;
 	//生命值
 	public float hp = 100;
 	//属于哪一名玩家
@@ -49,8 +49,8 @@ public class BaseTank : MonoBehaviour{
 		skin.transform.parent = this.transform;
 		skin.transform.localPosition = Vector3.zero;
 		skin.transform.localEulerAngles = Vector3.zero;
-		//物理
-		rigidbody = gameObject.AddComponent<Rigidbody>();
+        //物理
+        rigidBody = gameObject.AddComponent<Rigidbody>();
 		BoxCollider boxCollider = gameObject.AddComponent<BoxCollider>();
 		boxCollider.center = new Vector3(0, 2.5f, 1.47f);
 		boxCollider.size = new Vector3(7, 5, 12);
@@ -72,7 +72,7 @@ public class BaseTank : MonoBehaviour{
 		}
 		//产生炮弹
 		GameObject bulletObj = new GameObject("bullet");
-		bullet.layer = LayerMask.NameToLayer("Bullet"); // to do 
+        bulletObj.layer = LayerMask.NameToLayer("Bullet"); // to do 
 		Bullet bullet = bulletObj.AddComponent<Bullet>();
 		bullet.Init();
 		bullet.tank = this;
@@ -91,12 +91,12 @@ public class BaseTank : MonoBehaviour{
 		float v = Time.deltaTime * speed * axis * 100;
 		//旋转每个轮子
 		foreach(Transform wheel in wheels){
-			wheelsl.Rotate(new Vector3(v,0,0),Space.Self);
+			wheel.Rotate(new Vector3(v,0,0),Space.Self);
 		}
 		//滚动履带
-		MeshRender mr = track.gameObject.GetComponent<MeshRender>();
+		MeshRenderer mr = track.gameObject.GetComponent<MeshRenderer>();
 		if(mr == null){
-			return null;
+			return;
 		}
 		Material mtl = mr.material;
 		mtl.mainTextureOffset += new Vector2(0,v/256);
@@ -125,5 +125,15 @@ public class BaseTank : MonoBehaviour{
 		}
 	}
 
+
+    public void Start()
+    {
+       
+    }
+
+    public void Update()
+    {
+        
+    }
 
 }

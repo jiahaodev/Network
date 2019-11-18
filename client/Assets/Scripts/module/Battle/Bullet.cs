@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour {
 	//炮弹模型
 	public GameObject skin;
 	//物理
-	Rigidbody rigidbody;
+	new Rigidbody rigidbody;
 
 
 	//初始化
@@ -22,9 +22,9 @@ public class Bullet : MonoBehaviour {
 		skin.transform.parent = this.transform;
 		skin.transform.localPosition = Vector3.zero;
 		skin.transform.localEulerAngles = Vector3.zero;
-		//物理
-		rigidBody = gameObject.AddComponent<Rigidbody>();
-		rigidBody.useGravity = false;
+        //物理
+        rigidbody = gameObject.AddComponent<Rigidbody>();
+        rigidbody.useGravity = false;
 	}
 
 

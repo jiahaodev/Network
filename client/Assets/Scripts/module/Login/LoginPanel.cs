@@ -111,11 +111,11 @@ public class LoginPanel : BasePanel {
 		//背景图动画效果
 		float w = Mathf.Ceil(Time.time * 2) % 10 == 0 ? 500f: 0.1f; //频率
 		float a = 1 + 0.1f - 0.1f * Mathf.Sin(w * Time.time);      //振幅
-		bgImage.transform.localScale = new Vector(a,a,1);
+		bgImage.transform.localScale = new Vector3(a,a,1);
 		//连接失败
 		if(showConnFail){
 			showConnFail = false;
-			Panel.Open<TipPanel>("网络连接失败，请重新打开游戏");
+            PanelManager.Open<TipPanel>("网络连接失败，请重新打开游戏");
 		}
 	}
 
