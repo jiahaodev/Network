@@ -79,7 +79,7 @@ public class DbManager
             return false;
         }
         //sql语句
-        string sqlStr = string.Format("select * from account where id = '{0};'", id);
+        string sqlStr = string.Format("select * from account where id = '{0}';", id);
         //查询
         try
         {
@@ -91,7 +91,7 @@ public class DbManager
         }
         catch (Exception e)
         {
-            Console.WriteLine("[数据库] IsSafeString err, " + e.Message);
+            Console.WriteLine("[数据库] IsAccountNoExist err, " + e.Message);
             return false;
         }
     }
@@ -117,6 +117,7 @@ public class DbManager
         if (!IsAccountNoExist(id))
         {
             Console.WriteLine("[数据库] Register fail, id exist");
+            return false;
         }
         //写入数据库User表
         string sqlStr = string.Format("insert into account set id='{0}',pw='{1}';", id, pw);
@@ -149,7 +150,7 @@ public class DbManager
             return false;
         }
         //查询
-        string sqlStr = string.Format("select * from account where id='{0}' and pw='{1};'", id, pw);
+        string sqlStr = string.Format("select * from account where id='{0}' and pw='{1}';", id, pw);
         try
         {
             MySqlCommand cmd = new MySqlCommand(sqlStr, mysql);
@@ -166,6 +167,32 @@ public class DbManager
     }
 
 
+    //是否(不)存在该玩家数据
+    public static bool IsPlayerDataNoExist(string id)
+    {
+        CheckAndReconnect();
+        if (!DbManager.IsSafeString(id))
+        {
+            return false;
+        }
+        //sql语句
+        string sqlStr = string.Format("select * from player where id = '{0}';", id);
+        //查询
+        try
+        {
+            MySqlCommand cmd = new MySqlCommand(sqlStr, mysql);
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+            bool hasRows = dataReader.HasRows;
+            dataReader.Close();
+            return !hasRows; // ?? todo
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("[数据库] IsPlayerDataNoExist err, " + e.Message);
+            return false;
+        }
+    }
+
     //创建角色
     public static bool CreatePlayer(string id)
     {
@@ -176,11 +203,18 @@ public class DbManager
             Console.WriteLine("[数据库] CreatePlayer fail, id not safe");
             return false;
         }
+        //玩家是否存在
+        if (!IsPlayerDataNoExist(id))
+        {
+            Console.WriteLine("[数据库] CreatePlayer fail, id exist");
+            return false;
+        }
+
         //序列化
         PlayerData playerData = new PlayerData();
         string data = Js.Serialize(playerData);
         //写入数据库
-        string sqlStr = string.Format("insert into player set id ='{0}, data ='{1}';", id, data);
+        string sqlStr = string.Format("insert into player set id ='{0}', data ='{1}';", id, data);
         try
         {
             MySqlCommand cmd = new MySqlCommand(sqlStr, mysql);
@@ -240,7 +274,7 @@ public class DbManager
         //序列化
         string data = Js.Serialize(playerData);
         //sql
-        string sqlStr = string.Format("update player set data='{0}' where id ='{1}'", data, id);
+        string sqlStr = string.Format("update player set data='{0}' where id ='{1}';", data, id);
         //更新
         try
         {
